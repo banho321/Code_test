@@ -10,7 +10,7 @@ const App = () => {
   const [cartChanged, setCartChanged] = useState(false);
 
   useEffect(() => {
-    // Load data from Local Storage when the component is rendered
+    // Load dữ liệu từ Local Storage khi component được render
     const storedCart = localStorage.getItem("cartItems");
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // Update Local Storage when cartItems change
+    // Cập nhật Local Storage khi giỏ hàng thay đổi
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
@@ -29,9 +29,10 @@ const App = () => {
   }, [cartChanged]);
 
   const addToCart = (item) => {
-    const newItem = { ...item, inCart: 1, count: 1 };
-    setCartItems((prevCartItems) => [...prevCartItems, newItem]);
-    setCartChanged(!cartChanged);
+    item.inCart = 1;
+    const newItem = { ...item, count: 1 };
+    setCartItems([...cartItems, newItem]);
+    // setCartChanged(!cartChanged);
   };
 
   const updateCart = (item, action) => {
