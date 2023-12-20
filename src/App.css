@@ -174,7 +174,12 @@ margin-left: 15px;
 padding: 5px;
 float: right;
 }
-
+.remaining{
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5%;
+}
 .button {
   cursor: pointer;
   background-color: #f6c90e;
