@@ -10,7 +10,6 @@ const PageCard = () => {
   const [cartChanged, setCartChanged] = useState(false);
 
   useEffect(() => {
-    // Load dữ liệu từ Local Storage khi component được render
     const storedCart = localStorage.getItem("cartItems");
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
@@ -18,7 +17,6 @@ const PageCard = () => {
   }, []);
 
   useEffect(() => {
-    // Cập nhật Local Storage khi giỏ hàng thay đổi
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
@@ -94,9 +92,7 @@ const PageCard = () => {
                   <div className="price">${item.price}</div>
                   {item.inCart === 0 || item.length === 0 ? (
                     <div
-                      className={`button ${
-                        item.inCart === 1 ? "-active" : ""
-                      }`}
+                      className={`button ${item.inCart === 1 ? "-active" : ""}`}
                       onClick={() => addToCart(item)}
                     >
                       ADD TO CART
@@ -142,29 +138,31 @@ const PageCard = () => {
                 <div className="name">{item.name}</div>
                 <div className="price">${item.price}</div>
                 <div className="count">
-  <button
-    className="button"
-    onClick={() => updateCart(item, "decrement")}
-  >
-    -
-  </button>
-  <div className="number">{item.count}</div>
-  <button
-    disabled={item.count === item.inventory}
-    className="button"
-    onClick={() => updateCart(item, "increment")}
-  >
-    +
-  </button>
-  <div className="trash">
-    <img
-      onClick={() => trashCart(item.id)}
-      alt="trash"
-      src={trash}
-    />
-  </div>
-</div>
-<div className="remaining">Remaining: {item.inventory - item.count}</div>
+                  <button
+                    className="button"
+                    onClick={() => updateCart(item, "decrement")}
+                  >
+                    -
+                  </button>
+                  <div className="number">{item.count}</div>
+                  <button
+                    disabled={item.count === item.inventory}
+                    className="button"
+                    onClick={() => updateCart(item, "increment")}
+                  >
+                    +
+                  </button>
+                  <div className="trash">
+                    <img
+                      onClick={() => trashCart(item.id)}
+                      alt="trash"
+                      src={trash}
+                    />
+                  </div>
+                </div>
+                <div className="remaining">
+                  Remaining: {item.inventory - item.count}
+                </div>
               </div>
             </div>
           ))}
